@@ -1,4 +1,4 @@
-package main.java.com.hexaware;
+package main.java.com.hexaware.bean;
 
 public class Venue {
     private String venueName;
@@ -8,7 +8,7 @@ public class Venue {
         this.venueName = venueName;
         this.address = new Address(street, city, state, zipCode);
     }
-    Venue(String venueName, Address address) {
+    Venue(String venueName, String address) {
         this.venueName = venueName;
         this.address = new Address(address);
     }

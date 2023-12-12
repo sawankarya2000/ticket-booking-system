@@ -1,9 +1,9 @@
-package main.java.com.hexaware;
+package main.java.com.hexaware.bean;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
 
-public class Movie extends Event{
+public class Movie extends Event {
     private String genre;
     private String actorName;
     private String actressName;

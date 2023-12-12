@@ -1,10 +1,10 @@
-package main.java.com.hexaware;
+package main.java.com.hexaware.bean;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
 
-public class Sports extends Event{
+public class Sports extends Event {
     String sportName;
     ArrayList<String> teamsName;
 

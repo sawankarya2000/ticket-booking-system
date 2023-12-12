@@ -1,5 +1,7 @@
-package main.java.com.hexaware;
+package main.java.com.hexaware.bean;
 
+
+import main.java.com.hexaware.service.IEventServiceProvider;
 
 import java.time.LocalDate;
 import java.time.LocalTime;

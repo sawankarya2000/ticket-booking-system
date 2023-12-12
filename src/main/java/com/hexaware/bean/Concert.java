@@ -1,9 +1,9 @@
-package main.java.com.hexaware;
+package main.java.com.hexaware.bean;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
 
-public class Concert extends Event{
+public class Concert extends Event {
     private String artist;
     private String type;
 

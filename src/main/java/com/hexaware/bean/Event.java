@@ -1,9 +1,7 @@
-package main.java.com.hexaware;
+package main.java.com.hexaware.bean;
 
-import java.sql.Time;
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.Date;
 
 public abstract class Event {
     private String eventName;
