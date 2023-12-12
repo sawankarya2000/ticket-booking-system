@@ -7,7 +7,6 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class BookingSystemServiceProviderImpl extends EventServiceProviderImpl implements IBookingSystemServiceProvider {
-    private ArrayList<Event>  events;
     private ArrayList<Booking> bookings;
 
     private static int count = 0;
@@ -46,5 +45,9 @@ public class BookingSystemServiceProviderImpl extends EventServiceProviderImpl i
             }
         }
         return null;
+    }
+
+    public ArrayList<Booking> getBookings() {
+        return bookings;
     }
 }
