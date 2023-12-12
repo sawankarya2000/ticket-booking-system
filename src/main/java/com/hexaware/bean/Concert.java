@@ -37,7 +37,7 @@ public class Concert extends Event {
         System.out.println("Concert Type: " + this.type);
         System.out.println("Date : " + super.getEventDate());
         System.out.println("Time : " + super.getEventTime());
-        System.out.println("Venue Name : " + super.getVenueName());
+        System.out.println("Venue Name : " + super.getVenue().getVenueName());
         System.out.println("Seats Available : " + super.getAvailableSeats());
         System.out.println("Ticket Price : " + super.getTicketPrice());
     }

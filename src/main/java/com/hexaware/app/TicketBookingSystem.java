@@ -1,8 +1,6 @@
 package main.java.com.hexaware.app;
 
 import main.java.com.hexaware.bean.*;
-import main.java.com.hexaware.service.IBookingSystemServiceProvider;
-import main.java.com.hexaware.service.IEventServiceProvider;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -10,34 +8,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class TicketBookingSystem extends BookingSystem{
-//    public static Event createEvent(String eventName, LocalDate eventDate, LocalTime eventTime, Venue venueName, int totalSeats, double ticketPrice, EventType eventType) {
-//        return new Event(eventName, eventDate, eventTime, venueName, totalSeats, ticketPrice, eventType);
-//    }
-//
-//    public static void displayEventDetails(Event event) {
-//        event.displayEventDetails();
-//    }
-//
-//    public static void bookTickets(Event event, int numTickets) {
-//        double cost = event.getTicketPrice() * numTickets;
-//        if (event.bookTickets(numTickets)) {
-//            System.out.println(numTickets + " tickets booked successfully. Total cost: $" + cost);
-//        }else{
-//            System.out.println("Tickets Not Available");
-//        }
-//    }
-//
-//    public static boolean cancelTickets(Event event, int numTickets) {
-//        return event.cancelBooking(numTickets);
-//    }
-
+public class TicketBookingSystem{
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
-//        Event movieEvent = createEvent("Movie Night", LocalDate.of(2023, 12, 15), LocalTime.of(18, 30), "Cinema Hall", 100, 12.5, EventType.MOVIE);
-//        Event sportsEvent = createEvent("Football Match", LocalDate.of(2023, 12, 20), LocalTime.of(15, 0), "Stadium", 200, 20.0, EventType.SPORTS);
-//        Event concertEvent = createEvent("Rock Concert", LocalDate.of(2023, 12, 25), LocalTime.of(20, 0), "Arena", 150, 30.0, EventType.CONCERT);
         BookingSystemServiceProviderImpl bookingObject = new BookingSystemServiceProviderImpl();
         List<Event> events = new ArrayList<Event>();
 
@@ -70,7 +44,7 @@ public class TicketBookingSystem extends BookingSystem{
                     eventName = scanner.nextLine();
 
                     System.out.print("Event Date (YYYY-MM-DD): ");
-                    eventDate = LocalDate.parse(scannner.nextLine);
+                    eventDate = LocalDate.parse(scanner.nextLine());
 
                     System.out.print("Event Time (HH:mm): ");
                     eventTime = LocalTime.parse(scanner.nextLine());
@@ -124,7 +98,7 @@ public class TicketBookingSystem extends BookingSystem{
                         events.add(event);
                     } else if (eventTypeChoice == 2) {
                         String sportName;
-                        String numTeams;
+                        int numTeams;
                         ArrayList<String> teamsName = new ArrayList<String>();
 
                         System.out.print("Sport Name: ");
