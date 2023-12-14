@@ -16,7 +16,7 @@ public interface IBookingSystemRepository {
 
     int getAvailableNoOfTickets();
 
-    void calculateBookingCost(int numTickets);
+    void calculateBookingCost( Event event, int numTickets);
 
     void bookTickets(String eventName, int numTickets, List<Customer> listOfCustomers);
 

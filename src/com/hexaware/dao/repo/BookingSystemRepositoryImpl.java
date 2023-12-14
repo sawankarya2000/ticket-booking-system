@@ -133,7 +133,13 @@ public class BookingSystemRepositoryImpl implements IBookingSystemRepository {
             e.printStackTrace();
         }
 
-        Event newEvent = new Event(eventName, date, time, totalSeats, ticketPrice, eventType, venue);
+        Event newEvent;
+        if(eventType.equals("MOVIE")){
+            newEvent = new Movie(eventName, date, String time, Venue venue, totalSeats,
+            ticketPrice, EventType.MOVIE );
+        } else if (eventType.equals("SPORTS")) {
+            
+        }
         events.add(newEvent);
         return newEvent;
     }
