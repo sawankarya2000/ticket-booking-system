@@ -1,4 +1,4 @@
-package main.java.com.hexaware.bean;
+package com.hexaware.entity;
 
 public enum EventType {
     MOVIE,

@@ -1,4 +1,4 @@
-package main.java.com.hexaware.bean;
+package com.hexaware.entity;
 
 public class Address {
     private String street;
@@ -11,6 +11,10 @@ public class Address {
         this.city = city;
         this.state = state;
         this.zipCode = zipCode;
+    }
+
+    Address(String address) {
+        street = address;
     }
 
     Address(Address address){

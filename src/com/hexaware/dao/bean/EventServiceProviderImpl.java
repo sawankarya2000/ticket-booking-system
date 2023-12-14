@@ -1,7 +1,8 @@
-package main.java.com.hexaware.bean;
+package com.hexaware.dao.bean;
 
 
-import main.java.com.hexaware.service.IEventServiceProvider;
+import com.hexaware.entity.*;
+import com.hexaware.dao.service.IEventServiceProvider;
 
 import java.time.LocalDate;
 import java.time.LocalTime;

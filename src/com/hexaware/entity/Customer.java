@@ -1,4 +1,4 @@
-package main.java.com.hexaware.bean;
+package com.hexaware.entity;
 
 public class Customer {
     String customerName;

@@ -1,4 +1,9 @@
-package main.java.com.hexaware.bean;
+package com.hexaware.dao.bean;
+
+import com.hexaware.entity.Event;
+import com.hexaware.entity.EventType;
+import com.hexaware.entity.Movie;
+import com.hexaware.entity.Venue;
 
 import java.time.LocalDate;
 import java.time.LocalTime;

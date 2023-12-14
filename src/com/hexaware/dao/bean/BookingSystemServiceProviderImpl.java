@@ -1,15 +1,23 @@
-package main.java.com.hexaware.bean;
+package com.hexaware.dao.bean;
 
-import main.java.com.hexaware.service.IBookingSystemServiceProvider;
+import com.hexaware.entity.Booking;
+import com.hexaware.entity.Customer;
+import com.hexaware.entity.Event;
+import com.hexaware.exception.InvalidBookingIDException;
+import com.hexaware.dao.service.IBookingSystemServiceProvider;
 
-import java.lang.reflect.Array;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.LinkedHashSet;
 
 public class BookingSystemServiceProviderImpl extends EventServiceProviderImpl implements IBookingSystemServiceProvider {
-    private ArrayList<Booking> bookings;
+    private LinkedHashSet<Booking> bookings;
 
     private static int count = 0;
+
+    public BookingSystemServiceProviderImpl() {
+        bookings = new LinkedHashSet<>();
+    }
 
     public double calculateBookingCost(Event event, int numTickets) {
         BookingApp booking = new BookingApp(event);
@@ -24,9 +32,8 @@ public class BookingSystemServiceProviderImpl extends EventServiceProviderImpl i
         return booking;
     }
 
-    public boolean cancelBooking(int bookingId) {
-        for(int i = 0 ; i<bookings.size() ; i++) {
-            Booking currentBooking = bookings.get(i);
+    public boolean cancelBooking(int bookingId) throws InvalidBookingIDException {
+        for(Booking currentBooking : bookings) {
             if(currentBooking.getBookingId() == bookingId) {
                 int numTickets = currentBooking.getNumTickets();
                 Event event = currentBooking.getEvent();
@@ -34,12 +41,11 @@ public class BookingSystemServiceProviderImpl extends EventServiceProviderImpl i
                 return true;
             }
         }
-        return false;
+        throw new InvalidBookingIDException(bookingId);
     }
 
     public Booking getBookingDetails(int bookingId) {
-        for(int i = 0 ; i<bookings.size() ; i++) {
-            Booking currentBooking = bookings.get(i);
+        for(Booking currentBooking : bookings) {
             if(currentBooking.getBookingId() == bookingId) {
                 return currentBooking;
             }
@@ -47,7 +53,7 @@ public class BookingSystemServiceProviderImpl extends EventServiceProviderImpl i
         return null;
     }
 
-    public ArrayList<Booking> getBookings() {
+    public LinkedHashSet<Booking> getBookings() {
         return bookings;
     }
 }

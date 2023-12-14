@@ -1,4 +1,4 @@
-package main.java.com.hexaware.bean;
+package com.hexaware.entity;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -13,8 +13,16 @@ public abstract class Event {
     private double ticketPrice;
     private EventType eventType;
 
-
-    Event(String eventName, LocalDate eventDate, LocalTime eventTime, Venue venue, int totalSeats, double ticketPrice, EventType eventType){
+    public Event(String eventName, LocalDate eventDate, LocalTime eventTime, int totalSeats, double ticketPrice, EventType eventType){
+        this.eventName = eventName;
+        this.eventDate = eventDate;
+        this.eventTime = eventTime;
+        this.totalSeats = totalSeats;
+        this.availableSeats = totalSeats;
+        this.ticketPrice = ticketPrice;
+        this.eventType = eventType;
+    }
+    public Event(String eventName, LocalDate eventDate, LocalTime eventTime, Venue venue, int totalSeats, double ticketPrice, EventType eventType){
         this.eventName = eventName;
         this.eventDate = eventDate;
         this.eventTime = eventTime;

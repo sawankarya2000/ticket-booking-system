@@ -1,8 +1,7 @@
-package main.java.com.hexaware.bean;
+package com.hexaware.entity;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 
 public class Booking {
     private int bookingId;

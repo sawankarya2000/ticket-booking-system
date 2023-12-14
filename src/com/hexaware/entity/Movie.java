@@ -1,4 +1,4 @@
-package main.java.com.hexaware.bean;
+package com.hexaware.entity;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -8,7 +8,7 @@ public class Movie extends Event {
     private String actorName;
     private String actressName;
 
-    Movie(String eventName, LocalDate eventDate, LocalTime eventTime, Venue venueName, int totalSeats, double ticketPrice, EventType eventType, String genre, String actorName, String actressName){
+    public Movie(String eventName, LocalDate eventDate, LocalTime eventTime, Venue venueName, int totalSeats, double ticketPrice, EventType eventType, String genre, String actorName, String actressName){
         super(eventName, eventDate, eventTime, venueName, totalSeats, ticketPrice, eventType);
         this.genre = genre;
         this.actorName = actorName;
