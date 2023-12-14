@@ -7,6 +7,11 @@ public class Concert extends Event {
     private String artist;
     private String type;
 
+    public Concert(String eventName, LocalDate eventDate, LocalTime eventTime, Venue venue, int totalSeats,
+                 double ticketPrice, EventType eventType) {
+        super(eventName, eventDate, eventTime, venue, totalSeats, ticketPrice, eventType);
+    }
+
     public Concert(String eventName, LocalDate eventDate, LocalTime eventTime, Venue venueName, int totalSeats, double ticketPrice, EventType eventType, String artist, String type){
         super(eventName, eventDate, eventTime, venueName, totalSeats, ticketPrice, eventType);
         this.artist = artist;

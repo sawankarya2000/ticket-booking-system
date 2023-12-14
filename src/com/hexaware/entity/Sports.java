@@ -8,6 +8,10 @@ public class Sports extends Event {
     String sportName;
     ArrayList<String> teamsName;
 
+    public Sports(String eventName, LocalDate eventDate, LocalTime eventTime, Venue venue, int totalSeats, double ticketPrice, EventType eventType) {
+        super(eventName, eventDate, eventTime, venue, totalSeats, ticketPrice, eventType);
+    }
+
     public Sports(String eventName, LocalDate eventDate, LocalTime eventTime, Venue venueName, int totalSeats, double ticketPrice, EventType eventType, String sportName, ArrayList<String> teamsName){
         super(eventName, eventDate, eventTime, venueName, totalSeats, ticketPrice, eventType);
         this.sportName = sportName;

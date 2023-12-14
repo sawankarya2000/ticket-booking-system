@@ -9,6 +9,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -132,13 +133,17 @@ public class BookingSystemRepositoryImpl implements IBookingSystemRepository {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
-        Event newEvent;
+        DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm:ss");
+
+        Event newEvent = null;
         if(eventType.equals("MOVIE")){
-            newEvent = new Movie(eventName, date, String time, Venue venue, totalSeats,
-            ticketPrice, EventType.MOVIE );
+            newEvent = new Movie(eventName, LocalDate.parse(date, dateFormatter), LocalTime.parse(time, timeFormatter), venue, totalSeats, ticketPrice, EventType.MOVIE );
         } else if (eventType.equals("SPORTS")) {
-            
+            newEvent = new Sports(eventName, LocalDate.parse(date, dateFormatter), LocalTime.parse(time, timeFormatter), venue, totalSeats, ticketPrice, EventType.SPORTS );
+        } else if(eventType.equals("CONCERT")) {
+            newEvent = new Concert(eventName, LocalDate.parse(date, dateFormatter), LocalTime.parse(time, timeFormatter), venue, totalSeats, ticketPrice, EventType.CONCERT);
         }
         events.add(newEvent);
         return newEvent;
@@ -161,7 +166,17 @@ public class BookingSystemRepositoryImpl implements IBookingSystemRepository {
                         double ticketPrice = resultSet.getDouble("ticket_price");
                         String eventType = resultSet.getString("event_type");
 
-                        events.add(new Event(eventName, eventDate, eventTime,totalSeats, availableSeats, ticketPrice, EventType.valueOf(eventType)));
+                        Event newEvent = null;
+                        Venue venue = null;
+                        if(eventType.equals("MOVIE")){
+                            newEvent = new Movie(eventName, eventDate,  eventTime, venue, totalSeats, ticketPrice, EventType.MOVIE );
+                        } else if (eventType.equals("SPORTS")) {
+                            newEvent = new Sports(eventName, eventDate, eventTime, venue, totalSeats, ticketPrice, EventType.SPORTS );
+                        } else if(eventType.equals("CONCERT")) {
+                            newEvent = new Concert(eventName, eventDate, eventTime, venue, totalSeats, ticketPrice, EventType.CONCERT);
+                        }
+
+                        events.add(newEvent);
                     }
                 }
             }
@@ -178,6 +193,8 @@ public class BookingSystemRepositoryImpl implements IBookingSystemRepository {
         String query = "SELECT SUM(available_tickets) FROM events";
         try(PreparedStatement ps = conn.prepareStatement(query)){
             ps.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
         }
         return availableTickets;
     }
@@ -239,7 +256,7 @@ public class BookingSystemRepositoryImpl implements IBookingSystemRepository {
                         for (Customer customer : listOfCustomers) {
                             // Insert customer details into the customers table
                             String insertCustomerQuery = "INSERT INTO customers (customer_name, email, phone_number) VALUES (?, ?, ?)";
-                            try (PreparedStatement insertCustomerStatement = conn.prepareStatement(insertCustomerQuery){
+                            try (PreparedStatement insertCustomerStatement = conn.prepareStatement(insertCustomerQuery)){
                                 insertCustomerStatement.setString(1, customer.getCustomerName());
                                 insertCustomerStatement.setString(2, customer.getEmail());
                                 insertCustomerStatement.setString(3, customer.getPhoneNumber());
@@ -268,7 +285,7 @@ public class BookingSystemRepositoryImpl implements IBookingSystemRepository {
                         String updateSeatsQuery = "UPDATE events SET available_seats = available_seats - ? WHERE event_id = ?";
                         try (PreparedStatement updateSeatsStatement = conn.prepareStatement(updateSeatsQuery)) {
                             updateSeatsStatement.setInt(1, numTickets);
-                            updateSeatsStatement.setInt(2, eventID;
+                            updateSeatsStatement.setInt(2, eventID);
                             updateSeatsStatement.executeUpdate();
                         }
 
@@ -364,10 +381,10 @@ public class BookingSystemRepositoryImpl implements IBookingSystemRepository {
                         double ticketPrice = resultSet.getDouble("ticket_price");
 
                     // Create Event object
-                    Event event = new Event(eventName, eventDate, eventTime, totalSeats, ticketPrice);
+                    Event event = null;
 
                     // Create a Booking object with the retrieved details
-                    booking = new Booking(bookingId, event, numTickets, totalCost, bookingDate, customers);
+                    booking = new Booking(bookingId, event, numTickets, totalCost, bookingDate, (ArrayList<Customer>) customers);
                 }
         } catch (SQLException e) {
             e.printStackTrace();
